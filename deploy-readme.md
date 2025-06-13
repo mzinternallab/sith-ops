@@ -5,6 +5,11 @@ ops-admin
 
 gldt-C2s_aqcacsry1F_8xvQ9
 
+
+gitlab-runner register  --url https://gitlab.com  --token glrt-WTUeXLqXTY0wXvRnsK27LWc6MXMzdm1wCm86MQp0OjIKdTpjNmhteRg.01.1j0v40w6n
+
+
+
 ## LOGIN to docker 
 
 docker logout registry.gitlab.com

@@ -14,6 +14,8 @@ build:
     - /kaniko/executor --dockerfile Dockerfile \
         --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA \
         --context $CI_PROJECT_DIR
+  tags:
+    - sith-ops
   
 deploy:
   stage: deploy
@@ -29,3 +31,5 @@ deploy:
     - git push https://$CI_PROJECT_PATH:$CI_JOB_TOKEN@gitlab.com/$CI_PROJECT_PATH.git HEAD:main
   only:
     - main
+  tags:
+    - sith-ops
