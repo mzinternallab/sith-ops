@@ -25,13 +25,13 @@ deploy:
     - apk add --no-cache git
   script:
     # Update image tag in values.yaml
-    - sed -i "s|tag: .*|tag: $CI_COMMIT_SHORT_SHA|g" hello-nginx/helm/values.yaml
+    - 'sed -i "s|tag: .*|tag: $CI_COMMIT_SHORT_SHA|g" hello-nginx/helm/values.yaml'
     # Commit changes
-    - git config user.email "mustafar.ops@gmail.com"
-    - git config user.name "ops-admin"
+    - 'git config user.email "mustafar.ops@gmail.com"'
+    - 'git config user.name "ops-admin"'
     - git add hello-nginx/helm/values.yaml
-    - git commit -m "ci: deploy $CI_COMMIT_SHORT_SHA"
-    - git push https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab.com/$CI_PROJECT_PATH.git HEAD:main
+    - 'git commit -m "ci: deploy $CI_COMMIT_SHORT_SHA"'
+    - 'git push https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab.com/$CI_PROJECT_PATH.git HEAD:main'
   only:
     - main
   tags:
