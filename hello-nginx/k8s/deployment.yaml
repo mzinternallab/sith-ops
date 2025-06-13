@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sith-neural-net
+  namespace: redsaber
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sith-neural-net
+  template:
+    metadata:
+      labels:
+        app: sith-neural-net
+    spec:
+      containers:
+      - name: sith-neural-net
+        image: nginx:stable
+        ports:
+        - containerPort: 80
