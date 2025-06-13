@@ -15,8 +15,8 @@ build:
         --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA \
         --context $CI_PROJECT_DIR
   tags:
-    - sith-ops
-  
+    - redsaber
+
 deploy:
   stage: deploy
   image: alpine:latest
@@ -32,4 +32,4 @@ deploy:
   only:
     - main
   tags:
-    - sith-ops
+    - redsaber
