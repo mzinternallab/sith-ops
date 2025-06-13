@@ -22,7 +22,7 @@ deploy:
   stage: deploy
   image: alpine:latest
   script:
-    - 'sed -i "s|image: .*$|image: $IMAGE:$CI_COMMIT_SHORT_SHA|g" k8s/deployment.yaml"'
+    - 'sed -i "s|image: .*$|image: $IMAGE:$CI_COMMIT_SHORT_SHA|g" k8s/deployment.yaml'
     - 'git config user.email "mustafar.ops@gmail.com"'
     - 'git config user.name  "ops-admin"'
     - git add k8s/deployment.yaml
