@@ -7,13 +7,16 @@ variables:
 
 build:
   stage: build
-  image: gcr.io/kaniko-project/executor:latest
+  image:
+    name: gcr.io/kaniko-project/executor:latest
+    entrypoint: [""]  # Override the default entrypoint
   variables:
     DOCKER_CONFIG: /kaniko/.docker
   script:
-    - /kaniko/executor --dockerfile Dockerfile \
-        --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA \
-        --context $CI_PROJECT_DIR
+    - /kaniko/executor 
+      --dockerfile Dockerfile
+      --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+      --context $CI_PROJECT_DIR
   tags:
     - sith-ops
 
@@ -31,4 +34,3 @@ deploy:
     - main
   tags:
     - sith-ops
-    
