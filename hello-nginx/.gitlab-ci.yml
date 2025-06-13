@@ -7,14 +7,14 @@ variables:
 
 build:
   stage: build
-  image: docker:latest
-  services:
-    - docker:dind
+  image: gcr.io/kaniko-project/executor:latest
+  variables:
+    DOCKER_CONFIG: /kaniko/.docker
   script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - docker build -t $IMAGE:$CI_COMMIT_SHORT_SHA .
-    - docker push $IMAGE:$CI_COMMIT_SHORT_SHA
-
+    - /kaniko/executor --dockerfile Dockerfile \
+        --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA \
+        --context $CI_PROJECT_DIR
+  
 deploy:
   stage: deploy
   image: alpine:latest
@@ -22,8 +22,8 @@ deploy:
     # Update the k8s/deployment.yaml with the new image tag
     - sed -i "s|image: .*$|image: $IMAGE:$CI_COMMIT_SHORT_SHA|g" k8s/deployment.yaml
     # Commit & push the updated manifest back to the repo
-    - git config user.email "ci@example.com"
-    - git config user.name  "GitLab CI"
+    - git config user.email "mustafar.ops@gmail.com"
+    - git config user.name  "ops-admin"
     - git add k8s/deployment.yaml
     - git commit -m "ci: deploy $CI_COMMIT_SHORT_SHA"
     - git push https://$CI_PROJECT_PATH:$CI_JOB_TOKEN@gitlab.com/$CI_PROJECT_PATH.git HEAD:main

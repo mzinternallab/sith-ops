@@ -2,16 +2,16 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: sith-neural-net
-  namespace: redsaber
+  namespace: exegol
 spec:
   project: default
   source:
-    repoURL: https://gitlab.com/<your-group>/hello-nginx.git
+    repoURL: https://gitlab.com/holocron-lab/holocron-red/sith-ops.git
     targetRevision: main
     path: k8s
   destination:
     server: https://kubernetes.default.svc
-    namespace: redsaber
+    namespace: exegol
   syncPolicy:
     automated:
       prune: true
