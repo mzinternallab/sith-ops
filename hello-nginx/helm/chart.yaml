@@ -1,0 +1,6 @@
+apiVersion: v2
+name: sith-neural-net
+description: A Helm chart for hello-nginx application
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
